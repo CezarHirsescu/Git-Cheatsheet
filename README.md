@@ -1,4 +1,4 @@
-# Git & Github Tutorial
+# Git Cheat Sheet
 
 For those who need to learn git & github from scratch or those who are looking to fill gaps in their knowledge. This document covers a wide selection of content, starting with a low level explination of how git works and ending with (hopefully) intuitive explinations for key git & github conecpets such as **commits, branches, merging, remote repositories, pull requests, rebasing, reset, revert, cherry-picking**, and more.
 
