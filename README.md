@@ -1,6 +1,6 @@
 # Git Cheat Sheet
 
-For those who need to learn git & github from scratch or those who are looking to fill gaps in their knowledge. This document covers a wide selection of content, starting with a low level explination of how git works and ending with (hopefully) intuitive explinations for key git & github conecpets such as **commits, branches, merging, remote repositories, pull requests, rebasing, reset, revert, cherry-picking**, and more.
+For those who need to learn git & github from scratch or those who are looking to fill gaps in their knowledge. This document covers a wide selection of content, starting with a low level explanation of how git works and ending with (hopefully) intuitive explanations for key git & github concepts such as **commits, branches, merging, remote repositories, pull requests, rebasing, reset, revert, cherry-picking**, and more.
 
 - [Git \& Github Tutorial](#git--github-tutorial)
   - [How Git Works Under the Hood](#how-git-works-under-the-hood)
@@ -17,7 +17,7 @@ For those who need to learn git & github from scratch or those who are looking t
   - [Git Branches](#git-branches)
     - [What is a branch?](#what-is-a-branch)
     - [What is HEAD?](#what-is-head)
-    - [Detatched HEAD](#detatched-head)
+    - [Detached HEAD](#detached-head)
     - [Branch Management Commands](#branch-management-commands)
     - [Why do we use branches](#why-do-we-use-branches)
     - [Basic use of a branch](#basic-use-of-a-branch)
@@ -87,7 +87,7 @@ The 4 low level object types:
 - **Blob** - Represents single file
 - **Tree** - Represents directories
 - **Commit** - How git stores versions
-- **Annotated Tag** - persistant text pointer to Commit objects
+- **Annotated Tag** - persistent text pointer to Commit objects
 
 All git objects have:
 - Content
@@ -148,7 +148,7 @@ Example of a tree:
 040000 tree 257ed5837721d1aa6f77527a5c781077f21a9ce2    lib
 ```
 
-That first number of every entry in the tree is a permission. These are the Git object permisssions:
+That first number of every entry in the tree is a permission. These are the Git object permissions:
 
 - `040000`: Directory
 - `100644`: Regular non-executable file
@@ -226,14 +226,14 @@ Lets analyze what this command prints once we use it. Suppose we have two files:
 
 Then, suppose we ran the command `git commit -m "Our very first commit in the project"`
 
-We would get this respons:
+We would get this response:
 ```
 [master (root-commit) 1da090a] Our very first commit in the project
  2 files changed, 2 insertions(+)
  create mode 100644 file1.txt
  create mode 100644 file2.txt
 ```
-Some interesting opservations:
+Some interesting observations:
 - `master` is the branch that we're on
 - `root-commit` is the parent commit. This is the first commit so it has no parent, thus it says root commit
 - `1da090a` is the first couple characters of the hash of this commit
@@ -278,7 +278,7 @@ files can be:
 
 A new file begins as `untracked`. To start tracking a file, you need to add it using `git add`.
 
-You can add `untracked` and `modified` files. When you add a file, it becomes `staged`. Conversly, `staged` files can be unstaged to revert them to their prevouse state.
+You can add `untracked` and `modified` files. When you add a file, it becomes `staged`. Conversely, `staged` files can be unstaged to revert them to their previous state.
 
 When you make a commit, all `staged` files become `unmodified`.
 
@@ -308,7 +308,7 @@ git checkout <branch>
 
 ### What is HEAD?
 
-HEAD is a refernce to the currently checked-out branch (or commit).
+HEAD is a reference to the currently checked-out branch (or commit).
 
 - HEAD is locally significant, meaning it only exists on your local git repo and will not affect remote repos
 - Pointer is located in the `.git/HEAD file`
@@ -322,12 +322,12 @@ git checkout <branch>   # change to branch
 git checkout <hash>     # change to commit, detach head
 ```
 
-### Detatched HEAD
-If you checkout (change head) to a sha-1 hash, you enter DETACTHED HEAD state. This means that head is pointing directly to a commit, instead of a branch. HEAD is "detatched" from a branch.
+### Detached HEAD
+If you checkout (change head) to a sha-1 hash, you enter DETACHED HEAD state. This means that head is pointing directly to a commit, instead of a branch. HEAD is "detached" from a branch.
 
-In Detachted Head state, changes you make will not make any impact once you checkout a different branch. You can make experimental commits.
+In Detached Head state, changes you make will not make any impact once you checkout a different branch. You can make experimental commits.
 
-If you want to save the commits that you made while detatched, Git gives you the option to make a branch from this commit.
+If you want to save the commits that you made while detached, Git gives you the option to make a branch from this commit.
 
 
 ### Branch Management Commands
@@ -367,7 +367,7 @@ git branch -m <old> <new>
 ```
 
 ### Why do we use branches
-Branches are really useful when you want to work on new features of a code base, or when you want to have different versions of your program. They are also curcial when working on a project with others.
+Branches are really useful when you want to work on new features of a code base, or when you want to have different versions of your program. They are also crucial when working on a project with others.
 
 ### Basic use of a branch
 Lets see a basic use of a branch.
@@ -391,7 +391,7 @@ gitGraph
 commit id: "First Commit"
 ```
 
-If you made some more changes, then added and commited again, your git structure would look like this:
+If you made some more changes, then added and committed again, your git structure would look like this:
 ```mermaid
 gitGraph
 commit id: "First Commit"
@@ -419,14 +419,14 @@ commit id: "Add new feature"
 
 We use branches when we want to work on a new feature. When the feature is ready, we merge the branch. 
 
-It is essential to use branches when collaborating with others! As you learn more throught this tutorial, this fact will become obvious. But for now, consider a scenario where you're working with others. If you have a stable version of your project, and you want to add a new feature, you don't want your changes that you're making to affect your collaborators as they work on different features as well. When you develop your changes, you're bound to have bugs, and you don't want these bugs to break the entire application. By creating and merging branches, you can work on changes sepratly from the main branch, and then you can merge your changes only once they are ready. This is the standard workflow when working on a codebase with others.
+It is essential to use branches when collaborating with others! As you learn more through this tutorial, this fact will become obvious. But for now, consider a scenario where you're working with others. If you have a stable version of your project, and you want to add a new feature, you don't want your changes that you're making to affect your collaborators as they work on different features as well. When you develop your changes, you're bound to have bugs, and you don't want these bugs to break the entire application. By creating and merging branches, you can work on changes separately from the main branch, and then you can merge your changes only once they are ready. This is the standard workflow when working on a codebase with others.
 
 
 Merging Process:
 1. Create new feature branch from the main branch
 2. Make changes in the new branch and commit them
-3. Checkout main branch (recieving branch)
-4. Merge feature branch to the current recieving branch
+3. Checkout main branch (receiving branch)
+4. Merge feature branch to the current receiving branch
 
 ```sh
 git checkout <base-branch>
@@ -435,7 +435,7 @@ git merge <feature-branch>
 
 ### Fast-Forward Merge
 
-Fast forward merege is possible when there are no further commits in the receiving branch after the commit where feature branch was created. For example:
+Fast forward merge is possible when there are no further commits in the receiving branch after the commit where the feature branch was created. For example:
 ```mermaid
 gitGraph
 commit id: "First Commit"
@@ -473,7 +473,7 @@ This should give you some intuition for when git uses a fast-forward merge, and 
 
 ### 3-way merge
 
-3 way merge happens when fast forward merge is not possible because some commits have been made in the recieving branch. For example:
+3 way merge happens when fast forward merge is not possible because some commits have been made in the receiving branch. For example:
 ```mermaid
 gitGraph
 commit id: "First Commit"
@@ -506,14 +506,14 @@ merge "new-feature" id: "Merged new feature into main"
 ### Merge Conflicts
 In a 3 way merge, if one or more files are modified by *both branches*, git needs the user to manually select which change it should keep. This is called a **merge conflict**.
 
-When a merge conflic occours, the conflicting files will be moved to the staging area. Once the conflicts are fixed, run `git commit` and the merge will be completed. 
+When a merge conflict occurs, the conflicting files will be moved to the staging area. Once the conflicts are fixed, run `git commit` and the merge will be completed. 
 
 You also have the option to undo the merge with:
 ```sh
 git merge --abort
 ```
 
-When a conflic occours, git stores 3 blobs of the conflicting file. 1 blob is the original version, and the other 2 blobs are the 2 versions from the different branches.
+When a conflict occurs, git stores 3 blobs of the conflicting file. 1 blob is the original version, and the other 2 blobs are the 2 versions from the different branches.
 
 To manage the conflict in a file, you can go in the file and manually edit which parts you want to keep and which parts you want to delete. You can also use vscode or another git gui software to pick which version of the file you want to keep.
 
@@ -531,7 +531,7 @@ This is how you get a remote repository on your local machine.
 1. Find a repository of your choice
 2. Click the "Code" dropdown menu
 3. select "HTTPS" and copy the url
-4. Then, on your local machine, naviagte to a directory where you want to have the project, and execute the command below.
+4. Then, on your local machine, navigate to a directory where you want to have the project, and execute the command below.
 
 To clone a repo using https:
 ```sh
@@ -545,7 +545,7 @@ To see difference in modified files vs old files
 git diff
 ```
 
-### Does a remote repository update itself automatically after local repository change?
+### Does a remote repository update itself automatically after a local repository change?
 No. You need to push changes from your local repository to the remote repository.
 
 ### Does a remote repository send updates to the local repo automatically?
@@ -636,7 +636,7 @@ git pull
 ```
 - Git will fetch all changes from remote repo using 
 ```sh
-# this happens under the hood, you dont have to type this
+# this happens under the hood, you don't have to type this
 git fetch
 ```
 - After fetching, git updates FETCH_HEAD file that contains SHA1 hashes of last commits in remote repo for all tracking branches
@@ -664,7 +664,7 @@ git push -u origin <branch> # short version
 this will create the tracked branch in the remote repository, then it will push your changes.
 
 ### Update tracking statuses
-Suppose a new branch `temp` is created in the remote repository. Then we checkout `temp` locally using `git checkout temp`, creating a local copy of `temp`. Now, what happens if we delete `temp` in the remote repo and use `git fetch`. Suprisingly, the local `temp` branch still tracks the remote `temp` branch. To fix this issue, we need to *update tracking stauses*. We do this using:
+Suppose a new branch `temp` is created in the remote repository. Then we checkout `temp` locally using `git checkout temp`, creating a local copy of `temp`. Now, what happens if we delete `temp` in the remote repo and use `git fetch`. Surprisingly, the local `temp` branch still tracks the remote `temp` branch. To fix this issue, we need to *update tracking stausees*. We do this using:
 ```sh
 git remote update origin --prune
 ```
@@ -691,7 +691,7 @@ A Pull Request is a proposal of potential changes.
 > This is one of the main reasons we put changes in branches. Make sure you are familiar with [Git Branches](#chapter-6-git-branches).
 
 ### Why is it called "Pull Request"
-Its called a "pull request" because when developers were using git to collaborate, one developer would make some changes and push them, and then he would ask his colleagues to pull the changes so they could review them. Now with github, developers can review proposed changes without *actually* pulling them, but the name remains.
+It's called a "pull request" because when developers were using git to collaborate, one developer would make some changes and push them, and then he would ask his colleagues to pull the changes so they could review them. Now with github, developers can review proposed changes without *actually* pulling them, but the name remains.
 
 In fact, it might be more fit to call this feature a *merge request*, since developers are asking to merge their changes into the main branch.
 
@@ -699,7 +699,7 @@ In fact, it might be more fit to call this feature a *merge request*, since deve
 
 1. Develop some changes to a codebase. Put these changes in a branch. When the changes are ready, push the new branch to the remote repository.
 2. Go to github and open a new pull request for this branch.
-3. Once pull request is open, other collaboraters will review your changes
+3. Once pull request is open, other collaborators will review your changes
 4. When the pull request is reviewed, it will be merged to the base branch.
 
 By default, you are allowed to merge a pull request without review from other collaborators. These settings can be changed.
@@ -707,7 +707,7 @@ By default, you are allowed to merge a pull request without review from other co
 Once the feature is merged, the merged branch can be safely deleted.
 
 ### Protected branches
-You can make certain branches protected. By doing this, you configure certain requirments that pull requests must satisfy before they can be merged into this protected branch. This is where you can add required reviews, tests, and more.
+You can make certain branches protected. By doing this, you configure certain requirements that pull requests must satisfy before they can be merged into this protected branch. This is where you can add required reviews, tests, and more.
 
 ---
 
@@ -746,7 +746,7 @@ To fetch changes from upstream:
 git fetch upstream
 ```
 
-To pull changed from upstream:
+To pull changes from upstream:
 ```sh
 git pull upstream master # master could be "prod" or "main"
 ```
@@ -771,11 +771,11 @@ Tags are used to create versions of your code. This is important when others rel
 
 Versions follow the `Major.Minor.Patch` convention. 
 
-Major are large additions or modifications to your code base. They likley break programs that rely on the previous major version. Major releases introduce new features and functionality.
+Major are large additions or modifications to your code base. They likely break programs that rely on the previous major version. Major releases introduce new features and functionality.
 
-Minor changes are small additions or fixes to your code base. They should not break programs that rely on the previous minor version. Minor releases introduce small new features and improvments.
+Minor changes are small additions or fixes to your code base. They should not break programs that rely on the previous minor version. Minor releases introduce small new features and improvements.
 
-Patches are even smaller changes to the code,. They should never break programs that rely on the previous patch version. Patches introduce bug fixes.
+Patches are even smaller changes to the code. They should never break programs that rely on the previous patch version. Patches introduce bug fixes.
 
 You can also have release versions: `Major.Minor.Patch-ReleaseName`. This is usually done for new versions that are almost ready to be released but need to be tested before considered stable. Example release names are `alpha` or `beta` or just a release version (`1.2.3-beta`, `1.2.3-1.2`)
 
@@ -821,12 +821,12 @@ You can publish releases of your code on github. When publishing releases, tags 
 
 ## Rebasing
 
-Rebasing is an alternitive way to merge two or more branches together.
+Rebasing is an alternative way to merge two or more branches together.
 
 ### Merging vs Rebasing
-The difference between merging and rebasing is the history of changes. Rebasing flattens the commit history graph and makes commit history linear as apposed to having history of changes with branches.
+The difference between merging and rebasing is the history of changes. Rebasing flattens the commit history graph and makes commit history linear as opposed to having history of changes with branches.
 
-Additionally, rebasing is a way to avoid a 3 way merge. Rebasing restructures the commit history such that when its time to merge changes, a fast-forward merge is possible.
+Additionally, rebasing is a way to avoid a 3 way merge. Rebasing restructures the commit history such that when it's time to merge changes, a fast-forward merge is possible.
 
 ### How to perform a Rebase
 
@@ -895,7 +895,7 @@ Notice how the graph is flat. Git did not store the fact that feature used be a 
 
 ## Ignoring Files in Git
 
-In git we have the ability to ignore files and folders that we don't want to track. We use a file called `.gitignore` to sepecify which folders and files must be commited. `.gitignore` is added in the root of a git project and is usually added when a repository is first created.
+In git we have the ability to ignore files and folders that we don't want to track. We use a file called `.gitignore` to specify which folders and files must be committed. `.gitignore` is added in the root of a git project and is usually added when a repository is first created.
 
 ### Git ignore rules
 Inside .gitignore, type the files and folders you want to ignore.
@@ -916,7 +916,7 @@ node_modules/
 ### Best practices and common use cases
 We want to ignore large files and folders that are automatically generated. For example:
 - build folders like `bin/`
-- dependancy folders like `node_modules/`
+- dependency folders like `node_modules/`
 - compiled and log files like `*.pyc, *.log`
 - Hidden OS files like `Thumbs.db, .DS_Store`
 
@@ -928,33 +928,33 @@ When you make a repository on github, it has .gitignore templates for different 
 
 ### Git Reset
 
-Git reset allows you to undo commits and access previous changes of your repository. This command should never be used on public branches because it modifies git history. However, on the local banch this is a helpful command. Git revert will revert to a previous commit and make it the latest commit. This means all commits after it will be discarded.
+Git reset allows you to undo commits and access previous changes of your repository. This command should never be used on public branches because it modifies git history. However, on the local branch this is a helpful command. Git revert will revert to a previous commit and make it the latest commit. This means all commits after it will be discarded.
 
 Run this command to revert to a previous commit:
 ```sh
 git reset <hash>
 ```
-After this command, file contents do not change. But commited changes will be uncommited, so you will have the option to make changes to your changes and then do another commit. Commited files will be unstaged.
+After this command, file contents do not change. But committed changes will be uncommitted, so you will have the option to make changes to your changes and then do another commit. Committed files will be unstaged.
 
 You can use the `--soft` option if you want the changes to remain staged. This will reset the commit to the one provided but it will leave changes staged:
 ```sh
 git reset --soft <hash>
 ```
 
-You can also use the `--hard` option. Using this option will undo commited changes and revert files to their previous version. You will lose history of the changes you had before reseting: 
+You can also use the `--hard` option. Using this option will undo committed changes and revert files to their previous version. You will lose history of the changes you had before resetting: 
 ```sh
 git reset --hard <hash>
 ```
 This is the most destructive option, use with caution!
 
 ### Git Revert
-Git revert will undo changes made by a specific commit, but it applys those changes ***as a new commit***. Git revert is safe and does not modify history.
+Git revert will undo changes made by a specific commit, but it applies those changes ***as a new commit***. Git revert is safe and does not modify history.
 
 ```sh
 git revert <hash>
 ```
 
-If you need to undo a commit on a remot repository, git revert is your only option!!! You cannot use git reset!!!
+If you need to undo a commit on a remote repository, git revert is your only option!!! You cannot use git reset!!!
 
 ### Git commit --amend
 This command is used to modify the information of the latest commit (ONLY latest commit). Under the hood, this operation is destructive as git deletes the latest commit object and replaces it with a new one. So it should only be used on private branches.
@@ -1036,7 +1036,7 @@ git reflog show <branch>
 ```
 
 ### Stashing
-You can use stashing to temporarly save changes without commiting. Then you can apply them in another branch or after some changes.
+You can use stashing to temporarily save changes without commiting. Then you can apply them in another branch or after some changes.
 
 To stash changes:
 ```sh
@@ -1049,9 +1049,9 @@ git stash pop
 ```
 
 ### Squashing Commits
-When you have some commits that you would perfer to be represented by only one commit, you can *squash* them.
+When you have some commits that you would prefer to be represented by only one commit, you can *squash* them.
 
-One place this occours in when approving a pull request on a remote repository. Github gives you the option to squash commits when you approve a pull request.
+One place this occurs in when approving a pull request on a remote repository. Github gives you the option to squash commits when you approve a pull request.
 
 Another way to squash commits is to use interactive rebasing:
 ```sh
